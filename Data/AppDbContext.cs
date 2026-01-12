@@ -2,19 +2,19 @@
 using DINNO_ERP.Entities;
 using Microsoft.EntityFrameworkCore;
 
-namespace DINNO_ERP
+namespace DINNO_ERP.Data
 {
-    public class AppDbContext: DbContext
+    public class AppDbContext : DbContext
     {
-        public AppDbContext (DbContextOptions<AppDbContext> options) : base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
-        public DbSet<User> Users { get; set; }  
+        public DbSet<User> Users { get; set; }
         public DbSet<Auth> Auths { get; set; }
-        public DbSet <Token> Tokens { get; set; }
+        public DbSet<Token> Tokens { get; set; }
 
-        public DbSet <Client> Clients { get; set; }
-        public DbSet <Product> Products { get; set; }
-        public DbSet <Module> Modules { get; set; }
+        public DbSet<Client> Clients { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Module> Modules { get; set; }
 
         public DbSet<ClientProduct> ClientProducts { get; set; }
         public DbSet<ClientModule> ClientModules { get; set; }
@@ -26,22 +26,22 @@ namespace DINNO_ERP
             ConfigureUserAuthToken(modelBuilder);
             ConfigureClientProduct(modelBuilder);
         }
-        
+
         public static void ConfigureUserAuthToken(ModelBuilder modelBuilder)
         {
             //            ✔ Esto crea:
             //Auth.Id → PK + FK → User.Id
             //Token.Id → PK + FK → Auth.Id
-            
+
             modelBuilder.Entity<User>()
                 .HasOne(u => u.Auth)
                 .WithOne(a => a.User)
-                .HasForeignKey<Auth>(a =>a.Id)
+                .HasForeignKey<Auth>(a => a.Id)
                 .OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<Auth>()
                 .HasOne(a => a.Token)
                 .WithOne(t => t.Auth)
-                .HasForeignKey<Token>(t=>t.Id)
+                .HasForeignKey<Token>(t => t.Id)
                 .OnDelete(DeleteBehavior.Cascade);
 
         }
@@ -116,7 +116,7 @@ namespace DINNO_ERP
                         .HasDefaultValueSql("gen_random_uuid()");
             modelBuilder.Entity<ClientProductConnection>()
                         .Property(cpc => cpc.Id)
-                        .HasDefaultValueSql("gen_random_uuid()");   
+                        .HasDefaultValueSql("gen_random_uuid()");
 
 
 
