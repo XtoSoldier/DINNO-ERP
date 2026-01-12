@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "xVnqjMhS8LmUVqA2knzc9u3mJjl5drPOg1shnPVFoGg=",
+  "Source": "DINNO-ERP",
+  "BasePath": "_content/DINNO-ERP",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
